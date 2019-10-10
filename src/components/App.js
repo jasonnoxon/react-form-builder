@@ -2,6 +2,14 @@ import React from "react";
 import Add from "./Add";
 import Field from "./Field";
 
+const initialState = {
+  name: "",
+  fields: [],
+  nextId: 0,
+  showAdd: false,
+  sent: false
+};
+
 class App extends React.Component {
   state = {
     name: "",
@@ -44,19 +52,21 @@ class App extends React.Component {
       fields: this.state.fields
     };
 
-    try {
-      const response = await fetch(process.env.REACT_APP_API, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(form)
-      });
+    //   try {
+    //     const response = await fetch(process.env.REACT_APP_API, {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json"
+    //       },
+    //       body: JSON.stringify(form)
+    //     });
 
-      if (response.ok) this.setState({ sent: true });
-    } catch (error) {
-      alert("Submit not implemented in this version!");
-    }
+    //     if (response.ok) this.setState({ sent: true });
+    //   } catch (error) {
+    //     alert("Submit not implemented in this version!");
+    //   }
+
+    this.setState({ sent: true });
   };
 
   uuidv4 = () => {
@@ -73,6 +83,14 @@ class App extends React.Component {
       return (
         <div className="ui container">
           <h2 style={{ textAlign: "center" }}>Form Sent</h2>
+          <button
+            className="ui primary button"
+            onClick={e => {
+              this.setState(initialState);
+            }}
+          >
+            Go back...
+          </button>
         </div>
       );
     }
