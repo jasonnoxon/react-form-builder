@@ -46,11 +46,11 @@ class App extends React.Component {
   };
 
   handleSubmit = async () => {
-    const form = {
-      formId: this.uuidv4(),
-      name: this.state.name,
-      fields: this.state.fields
-    };
+    // const form = {
+    //   formId: this.uuidv4(),
+    //   name: this.state.name,
+    //   fields: this.state.fields
+    // };
 
     //   try {
     //     const response = await fetch(process.env.REACT_APP_API, {
@@ -81,8 +81,14 @@ class App extends React.Component {
   render() {
     if (this.state.sent) {
       return (
-        <div className="ui container">
-          <h2 style={{ textAlign: "center" }}>Form Sent</h2>
+        <div className="ui container" style={{ padding: "30px 0" }}>
+          <h2 style={{ textAlign: "center" }}>
+            The form wasn't REALLY sent. This is a demo!
+          </h2>
+          <p>This is what would have been sent...</p>
+          <pre style={{ backgroundColor: "#e0e0e0", padding: "10px" }}>
+            <code>{JSON.stringify(this.state.fields, undefined, 2)}</code>
+          </pre>
           <button
             className="ui primary button"
             onClick={e => {
@@ -96,7 +102,7 @@ class App extends React.Component {
     }
     return (
       <div>
-        <div className="ui container">
+        <div className="ui container" style={{ padding: "30px 0" }}>
           <h1>Form Builder</h1>
           <div className="ui form">
             <div className="field"></div>
